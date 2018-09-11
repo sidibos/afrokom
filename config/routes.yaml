@@ -1,9 +1,10 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
-login:
-    path: /login
-    controller: App\AppBundle\Controller\LoginController::index
+#login:
+#     path: /login
+#     controller: FOS\UserBundle\Controller::loginAction
+
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"

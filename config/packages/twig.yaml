@@ -1,5 +1,4 @@
 twig:
-    paths: ['%kernel.project_dir%/templates']
+    paths: ['%kernel.project_dir%/templates', '%kernel.project_dir%/src/Resources/FOSUserBundle/views']
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
-    form_themes: ['bootstrap_4_layout.html.twig']
