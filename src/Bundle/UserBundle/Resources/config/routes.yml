@@ -1,5 +1,0 @@
-index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
-     path: /login
-     controller: Afrokom\Bundle\UserBundle\Controller\LoginController::index

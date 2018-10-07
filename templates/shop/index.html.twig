@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Shop index{% endblock %}
+
+{% block body %}
+    <h1>Shop index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Logo</th>
+                <th>Banner</th>
+                <th>Active</th>
+                <th>Slug</th>
+                <th>Currency</th>
+                <th>Owner</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for shop in shops %}
+            <tr>
+                <td>{{ shop.id }}</td>
+                <td>{{ shop.name }}</td>
+                <td>{{ shop.logo }}</td>
+                <td>{{ shop.banner }}</td>
+                <td>{{ shop.active }}</td>
+                <td>{{ shop.slug }}</td>
+                <td>{{ shop.currency }}</td>
+                <td>{{ shop.owner }}</td>
+                <td>
+                    <a href="{{ path('shop_show', {'id': shop.id}) }}">show</a>
+                    <a href="{{ path('shop_edit', {'id': shop.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('shop_new') }}">Create new</a>
+{% endblock %}

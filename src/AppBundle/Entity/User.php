@@ -2,6 +2,9 @@
 
 namespace App\AppBundle\Entity;
 
+use App\Entity\Shop;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -83,11 +86,17 @@ class User extends BaseUser
     protected $phone;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Shop", mappedBy="owner")
+     */
+    private $shops;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         parent::__construct();
+        $this->shops = new ArrayCollection();
     }
 
     /**
@@ -234,6 +243,37 @@ class User extends BaseUser
     public function getPhone()
     {
         return $this->phone;
+    }
+
+    /**
+     * @return Collection|Shop[]
+     */
+    public function getShops(): Collection
+    {
+        return $this->shops;
+    }
+
+    public function addShop(Shop $shop): self
+    {
+        if (!$this->shops->contains($shop)) {
+            $this->shops[] = $shop;
+            $shop->setOwner($this);
+        }
+
+        return $this;
+    }
+
+    public function removeShop(Shop $shop): self
+    {
+        if ($this->shops->contains($shop)) {
+            $this->shops->removeElement($shop);
+            // set the owning side to null (unless already changed)
+            if ($shop->getOwner() === $this) {
+                $shop->setOwner(null);
+            }
+        }
+
+        return $this;
     }
 
 }

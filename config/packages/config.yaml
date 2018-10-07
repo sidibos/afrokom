@@ -9,7 +9,8 @@ fos_user:
         sender_name: "%mailer_user%"
     registration:
         form:
-            type: FOS\UserBundle\Form\Type\RegistrationFormType
+            #type: FOS\UserBundle\Form\Type\RegistrationFormType
+            type: App\AppBundle\Form\RegistrationType
             name: fos_user_registration_form
             validation_groups: [Registration, Default]
         confirmation:
@@ -22,5 +23,5 @@ fos_user:
     resetting:
         email:
             template: '@FOSUser/Resetting/email.txt.twig'
-    group:
-        group_class: App\AppBundle\Entity\Group
+    #group:
+    #    group_class: FosSf3\MainBundle\Entity\Group
